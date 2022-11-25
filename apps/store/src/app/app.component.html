@@ -1,3 +1,9 @@
-<h1>Todos</h1>
-<ngrx-nx-workshop-todos [todos]="todos"></ngrx-nx-workshop-todos>
-<button id="add-todo" (click)="addTodo()">Add Todo</button>
+<header>
+  <mat-toolbar color="primary">
+    <a routerLink="/" class="fill">NgRx Workshop Store</a>
+  </mat-toolbar>
+  <ngrx-nx-cart></ngrx-nx-cart>
+</header>
+<main>
+  <router-outlet></router-outlet>
+</main>

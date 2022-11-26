@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { from, map, mergeMap, switchMap, toArray } from 'rxjs';
 import { CartProduct } from '../../model/product';
+import { ProductService } from '../../product/product.service';
 import { CartService } from '../cart.service';
 
 @Component({

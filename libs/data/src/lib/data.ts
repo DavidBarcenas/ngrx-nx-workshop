@@ -73,7 +73,7 @@ export const data: Product[] = [
     category: Category.FURNITURE,
     price: 225.0,
     title: 'Chair',
-    url: '/assets/furniture/pexels-photo-963486.jpg',
+    url: '/assets/furniture/furniture-1.jpg',
     description:
       // tslint:disable-next-line:max-line-length
       `Taxidermy woke four loko sustainable try-hard, freegan cliche vaporware chillwave. Quinoa chambray subway tile, asymmetrical slow-carb photo booth gochujang. Tote bag street art next level disrupt viral, leggings shaman. Kinfolk activated charcoal hella biodiesel. Umami bicycle rights lomo coloring book 90's vexillologist sartorial, disrupt iPhone vice portland brunch bushwick ethical next level. Fanny pack humblebrag pinterest cray austin tote bag keytar celiac bushwick flannel pug enamel pin iPhone vegan.`,
@@ -84,7 +84,7 @@ export const data: Product[] = [
     category: Category.FURNITURE,
     price: 1125.0,
     title: 'Bed',
-    url: '/assets/furniture/furniture-1.jpg',
+    url: '/assets/furniture/furniture-2.jpg',
     description:
       // tslint:disable-next-line:max-line-length
       `Wayfarers gochujang knausgaard, man bun drinking vinegar church-key ethical retro poke umami subway tile glossier distillery. Organic chillwave hashtag hot chicken, you probably haven't heard of them subway tile flexitarian leggings knausgaard post-ironic dreamcatcher paleo pop-up church-key keffiyeh. Aesthetic adaptogen food truck copper mug kickstarter helvetica green juice, yuccie blue bottle snackwave before they sold out kinfolk cronut. XOXO kombucha cloud bread, plaid chia godard pok pok pabst actually lomo pour-over austin schlitz. Kombucha williamsburg squid kogi slow-carb keytar pinterest.`,
@@ -95,7 +95,7 @@ export const data: Product[] = [
     category: Category.FURNITURE,
     price: 225.0,
     title: 'Couch',
-    url: '/assets/furniture/furniture-2.jpg',
+    url: '/assets/furniture/furniture-3.jpg',
     description:
       // tslint:disable-next-line:max-line-length
       `Humblebrag fashion axe hexagon franzen tousled. Four loko pok pok coloring book flexitarian, butcher retro taxidermy af direct trade. Lumbersexual enamel pin la croix, tofu poutine coloring book 3 wolf moon literally pour-over hexagon brooklyn wolf. Tumeric chia hashtag marfa ugh YOLO blog tilde. Paleo activated charcoal franzen +1 ugh fam.`,

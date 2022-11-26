@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { map } from 'rxjs';
-import { CartService } from './cart.service';
+import { CartService } from '../cart.service';
 
 @Component({
-  selector: 'ngrx-nx-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss'],
+  selector: 'ngrx-nx-cart-icon',
+  templateUrl: './cart-icon.component.html',
+  styleUrls: ['./cart-icon.component.scss'],
 })
-export class CartComponent {
+export class CartIconComponent {
   cartItemsCounter$ = this.cartService.cartItems$.pipe(
     map((cartItems) =>
       cartItems.reduce((acc, { quantity }) => acc + quantity, 0)

@@ -11,7 +11,8 @@ mat-card-content {
   display: flex;
 
   img {
-    height: 120px;
+    object-fit: cover;
+    height: 90px;
   }
 
   .details {

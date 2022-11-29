@@ -5,7 +5,11 @@ a.card-link {
 }
 
 mat-card {
-  max-width: 400px;
+  img {
+    width: 400px;
+    object-fit: cover;
+    height: 267px;
+  }
 }
 
 .products-container {

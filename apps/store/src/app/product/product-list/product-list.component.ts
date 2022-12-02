@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Product, Rating } from "@ngrx-nx-workshop/api-interfaces";
+import { BasicProduct, Product, Rating } from "@ngrx-nx-workshop/api-interfaces";
 import { map, Observable, shareReplay } from 'rxjs';
-import { ProductModel } from '../../model/product';
 import { ProductService } from '../product.service';
 import { RatingService } from '../rating.service';
 import {Store} from "@ngrx/store";
-import { productsOpened } from "./actions";
+import * as productListAction from './actions'
+import * as selectors from '../selectors'
+import { GlobalState } from "../reducer";
 
 @Component({
   selector: 'ngrx-nx-product-list',
@@ -13,17 +14,17 @@ import { productsOpened } from "./actions";
   styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit {
-  products$?: Observable<ProductModel[]> = this.store.select(
-    state => state.product.products
+  products$?: Observable<BasicProduct[] | undefined> = this.store.select(
+    selectors.getProducts
   );
   customerRatings$?: Observable<{ [productId: string]: Rating }>;
 
   constructor(
     private readonly productService: ProductService,
     private readonly ratingService: RatingService,
-    private readonly store: Store<{product: {products: Product[]}}>
+    private readonly store: Store<GlobalState>
   ) {
-    this.store.dispatch(productsOpened())
+    this.store.dispatch(productListAction.productsOpened())
   }
 
   ngOnInit(): void {

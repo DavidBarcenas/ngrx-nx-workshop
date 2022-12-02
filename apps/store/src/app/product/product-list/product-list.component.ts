@@ -12,18 +12,16 @@ import {Store} from "@ngrx/store";
   styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit {
-  products$?: Observable<ProductModel[]>;
+  products$?: Observable<ProductModel[]> = this.store.select(state => state.product.products);
   customerRatings$?: Observable<{ [productId: string]: Rating }>;
 
   constructor(
     private readonly productService: ProductService,
     private readonly ratingService: RatingService,
-    private store: Store<{product: {products: Product[]}}>
+    private readonly store: Store<{product: {products: Product[]}}>
   ) {}
 
   ngOnInit(): void {
-    this.products$ = this.productService.getProducts();
-
     this.customerRatings$ = this.ratingService.getRatings().pipe(
       map((ratingsArray) =>
         // Convert from Array to Indexable.

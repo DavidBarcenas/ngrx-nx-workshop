@@ -1,12 +1,18 @@
-import {createReducer} from "@ngrx/store";
+import { Action } from "@ngrx/store";
 import { Product } from "@ngrx-nx-workshop/api-interfaces";
+import { data } from "@ngrx-nx-workshop/data";
 
-interface ProductReducer {
+interface ProductState {
   products: Product[]
 }
 
-export const initialState: ProductReducer = {
-  products: []
+export const initialState: ProductState = {
+  products: data
 };
 
-export const productsReducer = createReducer(initialState)
+export function productsReducer(
+  state: ProductState = initialState,
+  action: Action
+): ProductState {
+  return state
+}

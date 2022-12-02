@@ -14,6 +14,10 @@ import { ProductListComponent } from './product/product-list/product-list.compon
 import { SpinnerComponent } from './common/spinner.component';
 import { StarsComponent } from './common/stars/stars.component';
 import { ProductDetailsComponent } from './product/product-details/product-details.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import {productsReducer} from "./product/product.reducer";
 
 @NgModule({
   declarations: [
@@ -32,6 +36,17 @@ import { ProductDetailsComponent } from './product/product-details/product-detai
     FormsModule,
     RoutingModule,
     AngularMaterialModule,
+    StoreModule.forRoot(
+      {product: productsReducer},
+      {
+        metaReducers: !environment.production ? [] : [],
+        runtimeChecks: {
+          strictActionImmutability: true,
+          strictStateImmutability: true,
+        },
+      }
+    ),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Rating } from '@ngrx-nx-workshop/api-interfaces';
+import { Product, Rating } from "@ngrx-nx-workshop/api-interfaces";
 import { map, Observable, shareReplay } from 'rxjs';
 import { ProductModel } from '../../model/product';
 import { ProductService } from '../product.service';
 import { RatingService } from '../rating.service';
+import {Store} from "@ngrx/store";
 
 @Component({
   selector: 'ngrx-nx-product-list',
@@ -16,7 +17,8 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private readonly productService: ProductService,
-    private readonly ratingService: RatingService
+    private readonly ratingService: RatingService,
+    private store: Store<{product: {products: Product[]}}>
   ) {}
 
   ngOnInit(): void {

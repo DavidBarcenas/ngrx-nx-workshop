@@ -17,7 +17,7 @@ import { ProductDetailsComponent } from './product/product-details/product-detai
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import {productsReducer} from "./product/product.reducer";
+import { reducer } from "./product/product.reducer";
 
 @NgModule({
   declarations: [
@@ -37,7 +37,7 @@ import {productsReducer} from "./product/product.reducer";
     RoutingModule,
     AngularMaterialModule,
     StoreModule.forRoot(
-      {product: productsReducer},
+      {product: reducer},
       {
         metaReducers: !environment.production ? [] : [],
         runtimeChecks: {

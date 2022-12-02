@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { isDevMode, NgModule } from "@angular/core";
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -46,7 +46,10 @@ import {productsReducer} from "./product/product.reducer";
         },
       }
     ),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    !environment.production ? StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: !isDevMode(),
+    }) : [],
   ],
   providers: [],
   bootstrap: [AppComponent],

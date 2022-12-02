@@ -12,7 +12,9 @@ import {Store} from "@ngrx/store";
   styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit {
-  products$?: Observable<ProductModel[]> = this.store.select(state => state.product.products);
+  products$?: Observable<ProductModel[]> = this.store.select(
+    state => state.product.products
+  );
   customerRatings$?: Observable<{ [productId: string]: Rating }>;
 
   constructor(

@@ -10,7 +10,7 @@ export const initialState: ProductState = {
 
 const productsReducer = createReducer(
   initialState,
-  on(apiActions.productsFetched, (state, { products }) => {
+  on(apiActions.productsFetchedSuccess, (state, { products }) => {
     return {
       products: [...products]
     }

@@ -5,6 +5,7 @@ import { ProductModel } from '../../model/product';
 import { ProductService } from '../product.service';
 import { RatingService } from '../rating.service';
 import {Store} from "@ngrx/store";
+import { productsOpened } from "./actions";
 
 @Component({
   selector: 'ngrx-nx-product-list',
@@ -21,7 +22,9 @@ export class ProductListComponent implements OnInit {
     private readonly productService: ProductService,
     private readonly ratingService: RatingService,
     private readonly store: Store<{product: {products: Product[]}}>
-  ) {}
+  ) {
+    this.store.dispatch(productsOpened())
+  }
 
   ngOnInit(): void {
     this.customerRatings$ = this.ratingService.getRatings().pipe(

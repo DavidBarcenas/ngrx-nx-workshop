@@ -17,7 +17,9 @@ import { ProductDetailsComponent } from './product/product-details/product-detai
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { reducer } from "./product/product.reducer";
+import { reducer } from "./product/reducer";
+import { EffectsModule } from "@ngrx/effects";
+import { ProductEffects } from "./product/effects";
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { reducer } from "./product/product.reducer";
         },
       }
     ),
+    EffectsModule.forRoot([ProductEffects]),
     !environment.production ? StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: !isDevMode(),

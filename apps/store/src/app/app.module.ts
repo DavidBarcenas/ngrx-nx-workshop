@@ -17,9 +17,10 @@ import { ProductDetailsComponent } from './product/product-details/product-detai
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { reducer } from "./product/reducer";
 import { EffectsModule } from "@ngrx/effects";
-import { ProductEffects } from "./product/effects";
+import { ProductEffects } from "./product/product.effects";
+import { ErrorEffects } from "./error.effects";
+import { productsReducer } from "./product/product.reducer";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { ProductEffects } from "./product/effects";
     RoutingModule,
     AngularMaterialModule,
     StoreModule.forRoot(
-      {product: reducer},
+      {product: productsReducer},
       {
         metaReducers: !environment.production ? [] : [],
         runtimeChecks: {
@@ -48,7 +49,7 @@ import { ProductEffects } from "./product/effects";
         },
       }
     ),
-    EffectsModule.forRoot([ProductEffects]),
+    EffectsModule.forRoot([ProductEffects, ErrorEffects]),
     !environment.production ? StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: !isDevMode(),

@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { BasicProduct, Product, Rating } from "@ngrx-nx-workshop/api-interfaces";
+import { BasicProduct, Rating } from "@ngrx-nx-workshop/api-interfaces";
 import { map, Observable, shareReplay } from 'rxjs';
-import { ProductService } from '../product.service';
 import { RatingService } from '../rating.service';
 import {Store} from "@ngrx/store";
 import * as productListAction from './actions'
 import * as selectors from '../selectors'
-import { GlobalState } from "../reducer";
+import { GlobalState } from "../product.reducer";
 
 @Component({
   selector: 'ngrx-nx-product-list',
@@ -20,7 +19,6 @@ export class ProductListComponent implements OnInit {
   customerRatings$?: Observable<{ [productId: string]: Rating }>;
 
   constructor(
-    private readonly productService: ProductService,
     private readonly ratingService: RatingService,
     private readonly store: Store<GlobalState>
   ) {

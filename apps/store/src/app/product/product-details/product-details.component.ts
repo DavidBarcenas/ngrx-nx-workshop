@@ -15,6 +15,8 @@ import {
 import { CartService } from '../../cart/cart.service';
 import { ProductService } from '../product.service';
 import { RatingService } from '../rating.service';
+import * as actions from './actions';
+import { Store } from "@ngrx/store";
 
 @Component({
   selector: 'ngrx-nx-product-details',
@@ -47,7 +49,7 @@ export class ProductDetailsComponent {
     private readonly router: ActivatedRoute,
     private readonly productService: ProductService,
     private readonly ratingService: RatingService,
-    private readonly cartService: CartService,
+    private readonly store: Store,
     private readonly location: Location
   ) {
     this.productId$
@@ -74,7 +76,7 @@ export class ProductDetailsComponent {
   }
 
   addToCart(productId: string) {
-    this.cartService.addProduct(productId);
+    this.store.dispatch(actions.addToCart({ productId }));
   }
 
   back() {

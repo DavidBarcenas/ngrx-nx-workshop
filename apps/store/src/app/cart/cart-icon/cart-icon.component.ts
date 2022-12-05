@@ -14,7 +14,5 @@ export class CartIconComponent {
   constructor(
     private readonly cartService: CartService,
     private readonly store: Store
-  ) {
-    this.cartService.getCartProducts();
-  }
+  ) {}
 }

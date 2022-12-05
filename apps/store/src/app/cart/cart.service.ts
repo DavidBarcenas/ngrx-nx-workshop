@@ -12,10 +12,8 @@ export class CartService {
 
   constructor(private readonly http: HttpClient) {}
 
-  addProduct(id: string): void {
-    this.http
-      .post<CartItem[]>(`/api/cart/add/${id}`, {})
-      .subscribe((arr) => this.cartItemsSubject$.next(arr));
+  addProduct(id: string): Observable<CartItem[]> {
+    return this.http.post<CartItem[]>(`/api/cart/add/${id}`, {})
   }
 
   removeProduct(id: string): void {

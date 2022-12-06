@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { filter, from, map, mergeMap, switchMap, toArray } from "rxjs";
+import { filter, from, map, mergeMap, Observable, switchMap, toArray } from "rxjs";
 import { CartProduct } from '../../model/product';
 import { ProductService } from '../../product/product.service';
 import { CartService } from '../cart.service';
 import * as actions from './actions'
-import { Store } from "@ngrx/store";
-import { selectCartItems } from "../cart.selectors";
+import { createSelector, Store } from "@ngrx/store";
+import { selectCartItems, selectCartProducts, selectCartTotal } from "../cart.selectors";
+
+export const cartDetailsVm = createSelector(
+  selectCartProducts,
+  selectCartTotal,
+  (products, total) => ({products, total})
+)
 
 @Component({
   selector: 'ngrx-nx-cart-details',
@@ -15,37 +21,13 @@ import { selectCartItems } from "../cart.selectors";
   styleUrls: ['./cart-details.component.scss'],
 })
 export class CartDetailsComponent {
-  cartProducts$ = this.store.select(selectCartItems).pipe(
-    filter(
-      (cartItems): cartItems is NonNullable<typeof cartItems> => cartItems != null
-    ),
-    switchMap(cartItems => from(Object.keys(cartItems)).pipe(
-      mergeMap(productId =>
-        this.productService.getProduct(productId).pipe(
-          map(product => ({
-            ...product,
-            quantity: cartItems[productId]
-          }))
-        )
-      )
-    )),
-    toArray()
-  )
-
-  total$ = this.cartProducts$.pipe(
-    map(
-      (cartProducts) =>
-        cartProducts &&
-        cartProducts.reduce(
-          (acc, product) => acc + product.price * product.quantity,
-          0
-        )
-    )
-  );
+  cartDetailsVm$: Observable<{
+    products?: CartProduct[];
+    total?: number;
+  }> = this.store.select(cartDetailsVm);
 
   constructor(
     private readonly cartService: CartService,
-    private readonly productService: ProductService,
     private readonly snackBar: MatSnackBar,
     private readonly router: Router,
     private readonly store: Store

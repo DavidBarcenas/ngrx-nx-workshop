@@ -23,7 +23,7 @@ import { ErrorEffects } from "./error.effects";
 import { productFeatureKey, productsReducer } from "./product/product.reducer";
 import { CartModule } from "./cart/cart.module";
 import { RouterState, StoreRouterConnectingModule } from "@ngrx/router-store";
-import { routerFeatureState } from "./router/router.selectors";
+import { routerFeatureKey } from "./router/router.selectors";
 
 @NgModule({
   declarations: [
@@ -54,7 +54,7 @@ import { routerFeatureState } from "./router/router.selectors";
     ),
     EffectsModule.forRoot([ProductEffects, ErrorEffects]),
     StoreRouterConnectingModule.forRoot({
-      stateKey: routerFeatureState,
+      stateKey: routerFeatureKey,
       routerState: RouterState.Minimal
     }),
     !environment.production ? StoreDevtoolsModule.instrument({

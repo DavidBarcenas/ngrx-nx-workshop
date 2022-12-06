@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import * as productApiAction from './product/actions'
-import * as cartApiAction from './cart/actions'
+import * as productApiActions from './product/actions'
+import * as cartApiActions from './cart/actions'
 import { tap } from "rxjs";
 
 @Injectable()
@@ -15,9 +15,10 @@ export class ErrorEffects {
   handleFetchError$ = createEffect(
     () => this.actions$.pipe(
       ofType(
-        productApiAction.productsFetchedError,
-        cartApiAction.fetchCartItemsError,
-        cartApiAction.addToCartError
+        productApiActions.productsFetchedError,
+        productApiActions.singleProductFetchedError,
+        cartApiActions.fetchCartItemsError,
+        cartApiActions.addToCartError,
       ),
       tap(({errorMessage}) => {
         this.snackBar.open(errorMessage, 'Error', {

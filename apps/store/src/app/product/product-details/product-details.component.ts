@@ -12,11 +12,11 @@ import {
   take,
   concatMap,
 } from 'rxjs';
-import { CartService } from '../../cart/cart.service';
 import { ProductService } from '../product.service';
 import { RatingService } from '../rating.service';
 import * as actions from './actions';
 import { Store } from "@ngrx/store";
+import { selectCurrentProduct } from "../product.selectors";
 
 @Component({
   selector: 'ngrx-nx-product-details',
@@ -30,9 +30,7 @@ export class ProductDetailsComponent {
     shareReplay({ bufferSize: 1, refCount: true })
   );
 
-  readonly product$ = this.productId$.pipe(
-    switchMap((id) => this.productService.getProduct(id))
-  );
+  readonly product$ = this.store.select(selectCurrentProduct)
 
   readonly reviewsRefresh$ = new BehaviorSubject<void>(undefined);
 

@@ -4,8 +4,7 @@ import { map, Observable, shareReplay } from 'rxjs';
 import { RatingService } from '../rating.service';
 import {Store} from "@ngrx/store";
 import * as productListAction from './actions'
-import * as selectors from '../selectors'
-import { GlobalState } from "../product.reducer";
+import { selectProducts } from "../product.selectors";
 
 @Component({
   selector: 'ngrx-nx-product-list',
@@ -14,13 +13,13 @@ import { GlobalState } from "../product.reducer";
 })
 export class ProductListComponent implements OnInit {
   products$?: Observable<BasicProduct[] | undefined> = this.store.select(
-    selectors.getProducts
+    selectProducts
   );
   customerRatings$?: Observable<{ [productId: string]: Rating }>;
 
   constructor(
     private readonly ratingService: RatingService,
-    private readonly store: Store<GlobalState>
+    private readonly store: Store
   ) {
     this.store.dispatch(productListAction.productsOpened())
   }

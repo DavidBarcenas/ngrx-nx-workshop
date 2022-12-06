@@ -20,7 +20,7 @@ import { environment } from "../environments/environment";
 import { EffectsModule } from "@ngrx/effects";
 import { ProductEffects } from "./product/product.effects";
 import { ErrorEffects } from "./error.effects";
-import { productsReducer } from "./product/product.reducer";
+import { productFeatureKey, productsReducer } from "./product/product.reducer";
 import { CartModule } from "./cart/cart.module";
 import { RouterState, StoreRouterConnectingModule } from "@ngrx/router-store";
 import { routerFeatureState } from "./router/router.selectors";
@@ -43,7 +43,7 @@ import { routerFeatureState } from "./router/router.selectors";
     RoutingModule,
     AngularMaterialModule,
     StoreModule.forRoot(
-      {product: productsReducer},
+      {[productFeatureKey]: productsReducer},
       {
         metaReducers: !environment.production ? [] : [],
         runtimeChecks: {

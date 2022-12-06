@@ -2,9 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { BasicProduct, Rating } from "@ngrx-nx-workshop/api-interfaces";
 import { map, Observable, shareReplay } from 'rxjs';
 import { RatingService } from '../rating.service';
-import {Store} from "@ngrx/store";
+import { createSelector, Store } from "@ngrx/store";
 import * as productListAction from './actions'
-import { selectProducts } from "../product.selectors";
+import { selectProducts, selectProductsCallState } from "../product.selectors";
+import { LoadingState } from '../../shared/call-state';
+
+const productListVm = createSelector(
+  selectProducts,
+  selectProductsCallState,
+  (products, productsCallState) => ({products, productsCallState})
+)
 
 @Component({
   selector: 'ngrx-nx-product-list',
@@ -12,10 +19,11 @@ import { selectProducts } from "../product.selectors";
   styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit {
-  products$?: Observable<BasicProduct[] | undefined> = this.store.select(
-    selectProducts
-  );
+  productListVm$ = this.store.select(productListVm)
   customerRatings$?: Observable<{ [productId: string]: Rating }>;
+
+  // Make LoadingState be available in the template.
+  readonly LoadingState = LoadingState;
 
   constructor(
     private readonly ratingService: RatingService,
